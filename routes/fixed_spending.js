@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var Fixed_spending = require('../models/fixed_spending');
 const catchErrors = require('../lib/async-error');
-const { json } = require('sequelize/types');
 
 router.post('/', catchErrors(async (req, res, next)=>{
   // 설정한 고정 지출 조회

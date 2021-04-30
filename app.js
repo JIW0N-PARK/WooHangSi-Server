@@ -3,7 +3,7 @@ const express = require('express');
 const { sequelize } = require('./models');
 
 var indexRouter = require('./routes/index');
-var userRouter = require('./routes/users');
+var userRouter = require('./routes/user');
 var fixedRouter = require('./routes/fixed_spending');
 var categoryRouter = require('./routes/category');
 var brandRouter = require('./routes/brand');

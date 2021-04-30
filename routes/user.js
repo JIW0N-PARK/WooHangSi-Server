@@ -4,6 +4,12 @@ var User = require('../models/user');
 const catchErrors = require('../lib/async-error');
 
 router.post('/', catchErrors(async (req, res, next) => {
+  // 사용자 등록
+
+  // {
+  //   user_id: "",
+  //   name: ""
+  // }
   var user = await User.findOne({user_id: req.body.user_id});
 
   if(user){
