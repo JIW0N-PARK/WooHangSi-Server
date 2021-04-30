@@ -5,11 +5,17 @@ const catchErrors = require('../lib/async-error');
 
 router.post('/', catchErrors(async (req, res, next) => {
   var user = await User.findOne({user_id: req.body.user_id});
-  user = await User.create({
+
+  if(user){
+    res.send('already exists');
+  }
+  else{
+    user = await User.create({
     user_id: req.body.user_id,
     name: req.body.name
-  });
-  res.send('success');
+    });
+    res.send('success');
+  }
 }));
 
 module.exports = router;
