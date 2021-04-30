@@ -2,21 +2,26 @@ const { Sequelize, DataTypes, Model } = require('sequelize');
 const db = require('./index');
 const sequelize = db.sequelize;
 
-class User extends Model {}
+class Brand extends Model {}
 
-User.init({
-  user_id: {
+Brand.init({
+  brand_id: {
     type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  brand_name: {
+    type: DataTypes.STRING,
     allowNull: false
   },
-  name: {
+  category_id: {
     type: DataTypes.STRING,
     allowNull: false
   }
 }, {
   sequelize,
-  modelName: 'User',
-  tableName: 'users'
+  modelName: 'Brand',
+  tableName: 'brand'
 });
 
-module.exports = User;
+module.exports = Brand;

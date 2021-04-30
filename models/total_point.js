@@ -2,21 +2,21 @@ const { Sequelize, DataTypes, Model } = require('sequelize');
 const db = require('./index');
 const sequelize = db.sequelize;
 
-class User extends Model {}
+class Total_Point extends Model {}
 
-User.init({
+Total_Point.init({
   user_id: {
     type: DataTypes.INTEGER,
     allowNull: false
   },
-  name: {
-    type: DataTypes.STRING,
+  total_amount: {
+    type: DataTypes.INTEGER,
     allowNull: false
   }
 }, {
   sequelize,
-  modelName: 'User',
-  tableName: 'users'
+  modelName: 'Total_Point',
+  tableName: 'total_point'
 });
 
-module.exports = User;
+module.exports = Total_Point;

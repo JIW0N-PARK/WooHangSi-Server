@@ -3,8 +3,11 @@ const express = require('express');
 const { sequelize } = require('./models');
 
 var indexRouter = require('./routes/index');
-var fixedRouter = require('./routes/fixed-spending');
+var userRouter = require('./routes/users');
+var fixedRouter = require('./routes/fixed_spending');
 var categoryRouter = require('./routes/category');
+var brandRouter = require('./routes/brand');
+var pointRouter = require('./routes/point');
 
 var app = express();
 
@@ -24,8 +27,11 @@ app.use(express.json());
 
 // Route
 app.use('/api/v1/', indexRouter);
-app.use('/api/v1/fixed-spending', fixedRouter);
+app.use('/api/v1/user', userRouter);
+app.use('/api/v1/fixed_spending', fixedRouter);
 app.use('/api/v1/category', categoryRouter);
+app.use('/api/v1/brand', brandRouter);
+app.use('/api/v1/point', pointRouter);
 
 
 module.exports = app;
