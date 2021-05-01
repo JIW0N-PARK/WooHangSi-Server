@@ -8,15 +8,17 @@ router.post('/', catchErrors(async (req, res, next)=>{
   // 브랜드 예산 조회
 
   // {
-  //   brand_name: "",
-  //   category_id: ""
+  //   user_id: "",
+  //   brand_id: ""
   // }
-  var brand = await Brand.create({
-    brand_name: req.body.brand_name,
-    category_id: req.body.category_id
+  var user_brand = await User_Brand.findAll({
+    where: {
+      user_id: req.body.user_id,
+      brand_id: req.body.brand_id
+    }
   });
 
-  return res.json(brand);
+  return res.json(user_brand);
 }));
 
 router.post('/add', catchErrors(async (req, res, next)=>{
@@ -34,20 +36,20 @@ router.post('/add', catchErrors(async (req, res, next)=>{
   return res.json(brand);
 }));
 
-router.post('/addImage', catchErrors(async (req, res, next)=>{
-  // 브랜드 추가
+// router.post('/addImage', catchErrors(async (req, res, next)=>{
+//   // 브랜드 이미지 추가
 
-  // {
-  //   brand_name: "",
-  //   category_id: ""
-  // }
-  var brand = await Brand.create({
-    brand_name: req.body.brand_name,
-    category_id: req.body.category_id
-  });
+//   // {
+//   //   brand_name: "",
+//   //   category_id: ""
+//   // }
+//   var brand = await Brand.create({
+//     brand_name: req.body.brand_name,
+//     category_id: req.body.category_id
+//   });
 
-  return res.json(brand);
-}));
+//   return res.json(brand);
+// }));
 
 router.post('/budget/add', catchErrors(async (req, res, next) => {
   // 브랜드 예산 추가

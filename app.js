@@ -10,6 +10,8 @@ var brandRouter = require('./routes/brand');
 var pointRouter = require('./routes/point');
 var entireRouter = require('./routes/entire');
 
+var addDataRouter = require('./routes/api/index');
+
 var app = express();
 
 // Database Connection
@@ -35,6 +37,7 @@ app.use('/api/v1/brand', brandRouter);
 app.use('/api/v1/point', pointRouter);
 app.use('/api/v1/entire', entireRouter);
 
+app.use('/api/addData/', addDataRouter);
 
 module.exports = app;
 module.exports.handler = serverless(app);
