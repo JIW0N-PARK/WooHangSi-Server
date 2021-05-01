@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 
 const env = process.env.NODE_ENV || 'awsrds';
-const config = require('../config/config.json')[env];
+const config = require('../config/aws_rds_config.json')[env];
 const db = {};
 
 const sequelize = new Sequelize(config.dbName, config.username, config.password, {
