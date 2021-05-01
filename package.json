@@ -12,8 +12,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.897.0",
     "bcrypt": "^5.0.1",
     "express": "^4.17.1",
+    "multer-s3": "^2.9.0",
     "mysql2": "^2.2.5",
     "sequelize": "^6.6.2",
     "serverless-http": "^2.7.0"

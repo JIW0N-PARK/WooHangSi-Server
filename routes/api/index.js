@@ -1,19 +1,19 @@
 var express = require('express');
 var router = express.Router();
-var IndivAccs = require('../models/indiv_accounts');
-var Transaction = require('../models/transactions');
-const catchErrors = require('../lib/async-error');
+var IndivAccs = require('../../models/indiv_accounts');
+var Transaction = require('../../models/transactions');
+const catchErrors = require('../../lib/async-error');
 
 router.post('/account', catchErrors(async (req, res, next) => {
   // 계좌 데이터 추가
 
   // {
-  //   "acno": 계좌번호,
-  //   "prd_nm": 상품명,
-  //   "cucd": 통화코드,
-  //   "pbok_bal": 현재 잔액,
-  //   "act_stcd": 계좌상태코드,
-  //   "user_id": user_id
+  //   "acno": 계좌번호, --> string
+  //   "prd_nm": 상품명, --> string
+  //   "cucd": 통화코드, --> string
+  //   "pbok_bal": 현재 잔액, --> double
+  //   "act_stcd": 계좌상태코드, --> string
+  //   "user_id": user_id --> int
   // }
   var indivAccs = await IndivAccs.create({
     acno: req.body.acno,
@@ -31,14 +31,14 @@ router.post('/transaction', catchErrors(async (req, res, next) => {
   // 거래 데이터 추가
 
   // {
-  //   "trn_dt": "거래일자",
-  //   "trn_tm": "거래시각",
-  //   "cucd": "통화코드",
-  //   "rcv_am": "입금금액",
-  //   "pay_am": "출금금액",
-  //   "dps_bal": "거래후잔액",
-  //   "trn_txt": "거래내용",
-  //   "acno": "계좌번호"
+  //   "trn_dt": "거래일자", --> string
+  //   "trn_tm": "거래시각", --> string
+  //   "cucd": "통화코드", --> string
+  //   "rcv_am": "입금금액", --> double
+  //   "pay_am": "출금금액", --> double
+  //   "dps_bal": "거래후잔액", --> double
+  //   "trn_txt": "거래내용", --> string
+  //   "acno": "계좌번호" --> string
   // }
   var transaction = await Transaction.create({
     trn_dt: req.body.trn_dt,

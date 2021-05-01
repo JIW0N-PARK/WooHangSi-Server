@@ -6,7 +6,7 @@ class IndivAccs extends Model {}
 
 IndivAccs.init({
   acno: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     primaryKey: true,
     autoIncrement: true
   },
@@ -19,7 +19,7 @@ IndivAccs.init({
     allowNull: false
   },
   pbok_bal: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.DOUBLE,
     allowNull: false
   },
   act_stcd: {

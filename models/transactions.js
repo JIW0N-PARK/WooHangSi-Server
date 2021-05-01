@@ -11,11 +11,11 @@ Transactions.init({
     autoIncrement: true
   },
   trn_dt: {
-    type: DataTypes.DATE,
+    type: DataTypes.STRING,
     allowNull: false
   },
   trn_tm: {
-    type: DataTypes.TIME,
+    type: DataTypes.STRING,
     allowNull: false
   },
   cucd: {
@@ -23,15 +23,15 @@ Transactions.init({
     allowNull: false
   },
   rcv_am: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.DOUBLE,
     allowNull: false
   },
   pay_am: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.DOUBLE,
     allowNull: false
   },
   dps_bal: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.DOUBLE,
     allowNull: false
   },
   trn_txt: {
@@ -39,7 +39,7 @@ Transactions.init({
     allowNull: false
   },
   acno: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false
   }
 }, {
