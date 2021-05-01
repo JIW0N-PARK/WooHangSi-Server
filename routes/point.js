@@ -8,13 +8,11 @@ router.post('/manage', catchErrors(async (req, res, next)=>{
   // 포인트 적립/차감
 
   // {
-  //   point_id: "",
   //   point_amount: "",
-  //   point_content: "",
+  //   point_content: "", --> 적립 or 차감
   //   user_id: ""
   // }
   var point = await Point.create({
-    point_id: req.body.point_id,
     point_amount: req.body.point_amount,
     point_content: req.body.point_content,
     user_id: req.body.user_id
@@ -23,7 +21,7 @@ router.post('/manage', catchErrors(async (req, res, next)=>{
   var total = await Total_Point.findOne({user_id: req.body.user_id});
 
   if(total){
-    if(req.body.point_contnet = '적립'){
+    if(req.body.point_content = '적립'){
       var total_plus = total.total_amount + req.body.total_point;
       total_point = await Total_Point.update({
         total_amount: total_plus
@@ -32,6 +30,7 @@ router.post('/manage', catchErrors(async (req, res, next)=>{
           user_id: req.body.user_id
         }
       });
+      return res.json(total_point);
     } 
     else{
       var total_minus = total.total_amount - req.body.total_point;
@@ -42,10 +41,11 @@ router.post('/manage', catchErrors(async (req, res, next)=>{
           id: req.body.id
         }
       });
+      return res.json(total_point);
     }
   }
   else{
-    if(req.body.point_contnet = '적립'){
+    if(req.body.point_content = '적립'){
       var _total_plus = total.total_amount + req.body.total_point;
       total_point = await Total_Point.update({
         total_amount: _total_plus
@@ -54,10 +54,9 @@ router.post('/manage', catchErrors(async (req, res, next)=>{
           user_id: req.body.user_id
         }
       });
+      return res.json(total_point);
     }
   }
-
-  return res.json(point);
 }));
 
 router.post('/', catchErrors(async (req, res, next) => {

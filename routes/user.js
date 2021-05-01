@@ -10,7 +10,7 @@ router.post('/', catchErrors(async (req, res, next) => {
   //   user_id: "",
   //   name: ""
   // }
-  var user = await User.findOne({user_id: req.body.user_id});
+  var user = await User.findOne({ where: { user_id: req.body.user_id } });
 
   if(user){
     res.send('already exists');
@@ -22,6 +22,7 @@ router.post('/', catchErrors(async (req, res, next) => {
     });
     res.send('success');
   }
+  return res.json(user);
 }));
 
 module.exports = router;

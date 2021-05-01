@@ -8,6 +8,7 @@ var fixedRouter = require('./routes/fixed_spending');
 var categoryRouter = require('./routes/category');
 var brandRouter = require('./routes/brand');
 var pointRouter = require('./routes/point');
+var entireRouter = require('./routes/entire');
 
 var app = express();
 
@@ -32,6 +33,7 @@ app.use('/api/v1/fixed_spending', fixedRouter);
 app.use('/api/v1/category', categoryRouter);
 app.use('/api/v1/brand', brandRouter);
 app.use('/api/v1/point', pointRouter);
+app.use('/api/v1/entire', entireRouter);
 
 
 module.exports = app;

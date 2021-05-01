@@ -4,7 +4,37 @@ var Brand = require('../models/brand');
 var User_Brand = require('../models/user_brand');
 const catchErrors = require('../lib/async-error');
 
+router.post('/', catchErrors(async (req, res, next)=>{
+  // 브랜드 예산 조회
+
+  // {
+  //   brand_name: "",
+  //   category_id: ""
+  // }
+  var brand = await Brand.create({
+    brand_name: req.body.brand_name,
+    category_id: req.body.category_id
+  });
+
+  return res.json(brand);
+}));
+
 router.post('/add', catchErrors(async (req, res, next)=>{
+  // 브랜드 추가
+
+  // {
+  //   brand_name: "",
+  //   category_id: ""
+  // }
+  var brand = await Brand.create({
+    brand_name: req.body.brand_name,
+    category_id: req.body.category_id
+  });
+
+  return res.json(brand);
+}));
+
+router.post('/addImage', catchErrors(async (req, res, next)=>{
   // 브랜드 추가
 
   // {

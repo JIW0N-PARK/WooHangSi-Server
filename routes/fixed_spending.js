@@ -25,7 +25,7 @@ router.post('/add', catchErrors(async (req, res, next) => {
   // 고정 지출 추가
 
   // {
-  //   fixed_content: "",
+  //   fixed_content: "", --> 교통비, 월세, 통신비 ..
   //   fixed_amount: "",
   //   user_id: ""
   // }
