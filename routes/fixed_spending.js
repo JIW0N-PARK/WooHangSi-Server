@@ -62,6 +62,7 @@ router.put('/update', catchErrors(async (req, res, next) => {
       fixed_spending_id: req.body.fixed_spending_id
     }
   });
+  // Success = 1
   return res.json(fixed_spending);
 }));
 
@@ -77,7 +78,12 @@ router.delete('/delete', catchErrors(async (req, res, next) => {
     }
   });
   // 1 = success
-  return res.json(fixed_spending);
+  if(fixed_spending == 1){
+    return res.send("Success");
+  }
+  else{
+    return res.send("Fail");
+  }
 }));
 
 module.exports = router;

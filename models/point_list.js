@@ -2,9 +2,9 @@ const { Sequelize, DataTypes, Model } = require('sequelize');
 const db = require('./index');
 const sequelize = db.sequelize;
 
-class Point_list extends Model {}
+class Point_List extends Model {}
 
-Point_list.init({
+Point_List.init({
   point_id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -24,8 +24,8 @@ Point_list.init({
   }
 }, {
   sequelize,
-  modelName: 'Point_list',
+  modelName: 'Point_List',
   tableName: 'point_list'
 });
 
-module.exports = Point_list;
+module.exports = Point_List;
