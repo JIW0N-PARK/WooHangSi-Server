@@ -9,6 +9,7 @@ var categoryRouter = require('./routes/category');
 var brandRouter = require('./routes/brand');
 var pointRouter = require('./routes/point');
 var entireRouter = require('./routes/entire');
+var accountRouter = require('./routes/accounts');
 
 var addDataRouter = require('./routes/api/index');
 
@@ -36,6 +37,7 @@ app.use('/api/v1/category', categoryRouter);
 app.use('/api/v1/brand', brandRouter);
 app.use('/api/v1/point', pointRouter);
 app.use('/api/v1/entire', entireRouter);
+app.use('/api/v1/account', accountRouter);
 
 app.use('/api/addData/', addDataRouter);
 
