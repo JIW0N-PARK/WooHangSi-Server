@@ -3,7 +3,7 @@ var router = express.Router();
 var User = require('../models/user');
 const catchErrors = require('../lib/async-error');
 
-router.post('/', catchErrors(async (req, res, next) => {
+router.post('/register', catchErrors(async (req, res, next) => {
   // 사용자 등록
 
   // {
@@ -13,7 +13,7 @@ router.post('/', catchErrors(async (req, res, next) => {
   var user = await User.findOne({ where: { user_id: req.body.user_id } });
 
   if(user){
-    res.send('already exists');
+    res.json('already exists');
   }
   else{
     user = await User.create({
@@ -22,6 +22,17 @@ router.post('/', catchErrors(async (req, res, next) => {
     });
     res.send('success');
   }
+  return res.json(user);
+}));
+
+router.post('/get', catchErrors(async (req, res, next) => {
+  // 사용자 가져오기
+
+  // {
+  //   user_id: ""
+  // }
+  var user = await User.findOne({ where: { user_id: req.body.user_id } });
+
   return res.json(user);
 }));
 
