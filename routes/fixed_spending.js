@@ -23,7 +23,7 @@ router.post('/', catchErrors(async (req, res, next)=>{
         month: req.body.month
       }
     });
-    return fixed_spending_list;
+    return res.json(fixed_spending_list);
   }
   return res.send('Not Found');
 }));

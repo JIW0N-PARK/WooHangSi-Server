@@ -16,6 +16,7 @@ router.post('/', catchErrors(async (req, res, next)=>{
       month: req.body.month
     }
   });
+
   if(entire){
     var entire_list = await Entire.findAll({
       where: {
@@ -23,7 +24,7 @@ router.post('/', catchErrors(async (req, res, next)=>{
         month: req.body.month
       }
     });
-    return entire_list;
+    return res.json(entire_list);
   }
   return res.send('Not Found');
 }));
@@ -74,7 +75,7 @@ router.delete('/delete', catchErrors(async (req, res, next) => {
     }
   });
   // 1 = success
-  return res.json(entire_id);
+  return res.json(entire);
 }));
 
 module.exports = router;

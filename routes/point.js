@@ -18,7 +18,7 @@ router.post('/manage', catchErrors(async (req, res, next)=>{
     user_id: req.body.user_id
   });
 
-  var total = await Total_Point.findOne({user_id: req.body.user_id});
+  var total = await Total_Point.findAll({user_id: req.body.user_id});
 
   if(total){
     if(req.body.point_content = '적립'){
@@ -65,7 +65,7 @@ router.post('/', catchErrors(async (req, res, next) => {
   // {
   //   user_id: ""
   // }
-  var total = await Total_Point.findOne({
+  var total = await Total_Point.findAll({
     user_id: req.body.user_id
   });
 

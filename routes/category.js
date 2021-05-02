@@ -33,6 +33,7 @@ router.post('/budget/add', catchErrors(async (req, res, next) => {
   // }
   var user_category = await User_Category.create({
     budget: req.body.budget,
+    spending: 0,
     user_id: req.body.user_id,
     category_id: req.body.category_id,
     month: req.body.month
@@ -77,17 +78,15 @@ router.post('/spending/add', catchErrors(async (req, res, next) => {
   // 카테고리 지출 추가
 
   // {
-  //   user_id: "",
-  //   category_id: "",
-  //   month: ""
+  //   id: "",
+  //   spending: ""
   // }
+
   var user_spending = await User_Category.update({
     spending: req.body.spending
   }, {
     where: {
-      user_id: req.body.user_id,
-      category_id: req.body.category_id,
-      month: req.body.month
+      id: req.body.id
     }
   });
 

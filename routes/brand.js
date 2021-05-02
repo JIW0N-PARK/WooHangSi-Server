@@ -57,15 +57,15 @@ router.post('/budget/add', catchErrors(async (req, res, next) => {
   // 브랜드 예산 추가
 
   // {
-  //   brand_id: "",
   //   user_id: "",
+  //   brand_id: "",
   //   budget: "",
   //   spending: "",
   //   month: ""
   // }
   var user_brand = await User_Brand.create({
-    brand_id: req.body.budget,
     user_id: req.body.user_id,
+    brand_id: req.body.brand_id,
     budget: req.body.budget,
     spending: 0,
     month: req.body.month
@@ -81,13 +81,14 @@ router.put('/budget/update', catchErrors(async (req, res, next) => {
   //   budget: "",
   //   id: ""
   // }
-  var user_brand = await User_brand.update({
+  var user_brand = await User_Brand.update({
     budget: req.body.budget
   }, {
     where: {
       id: req.body.id
     }
   });
+
   return res.json(user_brand);
 }));
 
@@ -110,17 +111,13 @@ router.post('/spending/add', catchErrors(async (req, res, next) => {
   // 브랜드 지출 추가
 
   // {
-  //   brand_id: "",
-  //   user_id: "",
-  //   spending: "",
-  //   month: ""
+  //   id: ""
+  //   spending: ""
   // }
   var user_spending = await User_Brand.update({
     spending: req.body.spending
   }, {
     where: {
-      brand_id: req.body.brand_id,
-      user_id: req.body.user_id,
       id: req.body.id
     }
   });
