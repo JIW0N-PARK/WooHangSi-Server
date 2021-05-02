@@ -75,12 +75,6 @@ router.post('/budget/add', catchErrors(async (req, res, next) => {
 }));
 
 router.put('/budget/update', catchErrors(async (req, res, next) => {
-  // 브랜드 예산 수정
-
-  // {
-  //   budget: "",
-  //   id: ""
-  // }
   var user_brand = await User_Brand.update({
     budget: req.body.budget
   }, {
