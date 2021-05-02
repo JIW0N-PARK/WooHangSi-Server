@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var IndivAccs = require('../models/indiv_accounts');
+var Transactions = require('../models/transactions');
 const catchErrors = require('../lib/async-error');
 
 router.post('/getAllAccount', catchErrors(async (req, res, next)=>{
@@ -16,6 +17,21 @@ router.post('/getAllAccount', catchErrors(async (req, res, next)=>{
   });
 
   return res.json(accounts);
+}));
+
+router.post('/getTransactions', catchErrors(async (req, res, next)=>{
+  // 계좌 내역 조회
+
+  // {
+  //   acno: ""
+  // }
+  var transaction = await Transactions.findAll({
+    where: {
+      acno: req.body.acno
+    }
+  });
+
+  return res.json(transaction);
 }));
 
 module.exports = router;
