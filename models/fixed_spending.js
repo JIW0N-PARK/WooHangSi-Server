@@ -21,9 +21,14 @@ Fixed_spending.init({
   user_id: {
     type: DataTypes.INTEGER,
     allowNull: false
+  },
+  month: {
+    type: DataTypes.INTEGER,
+    allowNull: false
   }
 }, {
   sequelize,
+  timestamps: false,
   modelName: 'Fixed_spending',
   tableName: 'fixed_spending'
 });

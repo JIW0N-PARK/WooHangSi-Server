@@ -2,30 +2,39 @@ const { Sequelize, DataTypes, Model } = require('sequelize');
 const db = require('./index');
 const sequelize = db.sequelize;
 
-class Point extends Model {}
+class User_Category extends Model {}
 
-Point.init({
-  point_id: {
+User_Category.init({
+  id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true
   },
-  point_amount: {
+  budget: {
+    type: DataTypes.DOUBLE,
+    allowNull: false
+  },
+  spending: {
+    type: DataTypes.DOUBLE,
+    allowNull: true
+  },
+  user_id: {
     type: DataTypes.INTEGER,
     allowNull: false
   },
-  point_content: {
+  category_id: {
     type: DataTypes.STRING,
     allowNull: false
   },
-  user_id: {
+  month: {
     type: DataTypes.INTEGER,
     allowNull: false
   }
 }, {
   sequelize,
-  modelName: 'Point',
-  tableName: 'point'
+  timestamps: false,
+  modelName: 'User_Category',
+  tableName: 'user_category'
 });
 
-module.exports = Point;
+module.exports = User_Category;

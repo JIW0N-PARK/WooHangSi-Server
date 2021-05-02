@@ -41,6 +41,10 @@ Transactions.init({
   acno: {
     type: DataTypes.STRING,
     allowNull: false
+  },
+  category_id: {
+    type: DataTypes.STRING,
+    allowNull: true
   }
 }, {
   sequelize,

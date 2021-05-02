@@ -24,10 +24,15 @@ User_Brand.init({
   },
   spending: {
     type: DataTypes.INTEGER,
-    allowNull: true
+    allowNull: false
+  },
+  month: {
+    type: DataTypes.INTEGER,
+    allowNull: false
   }
 }, {
   sequelize,
+  timestamps: false,
   modelName: 'User_Brand',
   tableName: 'user_brand'
 });

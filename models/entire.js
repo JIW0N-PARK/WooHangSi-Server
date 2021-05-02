@@ -16,14 +16,19 @@ Entire.init({
   },
   spending: {
     type: DataTypes.INTEGER,
-    allowNull: true
+    allowNull: false
   },
   user_id: {
+    type: DataTypes.INTEGER,
+    allowNull: false
+  },
+  month: {
     type: DataTypes.INTEGER,
     allowNull: false
   }
 }, {
   sequelize,
+  timestamps: false,
   modelName: 'Entire',
   tableName: 'entire'
 });

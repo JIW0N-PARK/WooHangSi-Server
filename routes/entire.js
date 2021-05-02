@@ -7,14 +7,21 @@ router.post('/', catchErrors(async (req, res, next)=>{
   // 전체 예산/지출 조회
 
   // {
-  //   user_id: "" --> INTEGER
-  // }
+  //   user_id: "", --> INTEGER
+  //   month: "" --> INTEGER
+  // } 
   var entire = await Entire.findOne({
-    where: {user_id: req.body.user_id}
+    where: {
+      user_id: req.body.user_id,
+      month: req.body.month
+    }
   });
   if(entire){
     var entire_list = await Entire.findAll({
-      where: {user_id: req.body.user_id}
+      where: {
+        user_id: req.body.user_id,
+        month: req.body.month
+      }
     });
     return entire_list;
   }
@@ -27,10 +34,13 @@ router.post('/add', catchErrors(async (req, res, next) => {
   // {
   //   budget: "", -> INTEGER
   //   user_id: "" -> INTEGER
+  //   month: "" -> INTEGER
   // }
   var entire = await Entire.create({
     budget: req.body.budget,
-    user_id: req.body.user_id
+    spending: 0,
+    user_id: req.body.user_id,
+    month: req.body.month
   });
   return res.json(entire);
 }));

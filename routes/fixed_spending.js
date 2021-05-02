@@ -7,14 +7,21 @@ router.post('/', catchErrors(async (req, res, next)=>{
   // 설정한 고정 지출 조회
 
   // {
-  //   user_id: ""
+  //   user_id: "", --> INTEGER
+  //   month: "" --> INTEGER
   // }
   var fixed = await Fixed_spending.findOne({
-    where: {user_id: req.body.user_id}
+    where: {
+      user_id: req.body.user_id,
+      month: req.body.month
+    }
   });
   if(fixed){
     var fixed_spending_list = await Fixed_spending.findAll({
-      where: {user_id: req.body.user_id}
+      where: {
+        user_id: req.body.user_id,
+        month: req.body.month
+      }
     });
     return fixed_spending_list;
   }
@@ -25,14 +32,16 @@ router.post('/add', catchErrors(async (req, res, next) => {
   // 고정 지출 추가
 
   // {
-  //   fixed_content: "", --> 교통비, 월세, 통신비 ..
-  //   fixed_amount: "",
-  //   user_id: ""
+  //   fixed_content: "", --> 교통비, 월세, 통신비 STRING
+  //   fixed_amount: "", --> INTEGER
+  //   user_id: "", --> INTEGER
+  //   month: "" --> INTEGER
   // }
   var fixed_spending = await Fixed_spending.create({
     fixed_content: req.body.fixed_content,
     fixed_amount: req.body.fixed_amount,
-    user_id: req.body.user_id
+    user_id: req.body.user_id,
+    month: req.body.month
   });
   return res.json(fixed_spending);
 }));

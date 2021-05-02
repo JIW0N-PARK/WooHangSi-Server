@@ -9,12 +9,14 @@ router.post('/', catchErrors(async (req, res, next)=>{
 
   // {
   //   user_id: "",
-  //   brand_id: ""
+  //   brand_id: "",
+  //   month: ""
   // }
   var user_brand = await User_Brand.findAll({
     where: {
       user_id: req.body.user_id,
-      brand_id: req.body.brand_id
+      brand_id: req.body.brand_id,
+      month: req.body.month
     }
   });
 
@@ -58,13 +60,15 @@ router.post('/budget/add', catchErrors(async (req, res, next) => {
   //   brand_id: "",
   //   user_id: "",
   //   budget: "",
-  //   spending: ""
+  //   spending: "",
+  //   month: ""
   // }
   var user_brand = await User_Brand.create({
     brand_id: req.body.budget,
     user_id: req.body.user_id,
     budget: req.body.budget,
-    spending: req.body.spending
+    spending: 0,
+    month: req.body.month
   });
 
   return res.json(user_brand);
@@ -106,18 +110,22 @@ router.post('/spending/add', catchErrors(async (req, res, next) => {
   // 브랜드 지출 추가
 
   // {
+  //   brand_id: "",
+  //   user_id: "",
   //   spending: "",
-  //   id: ""
+  //   month: ""
   // }
   var user_spending = await User_Brand.update({
     spending: req.body.spending
   }, {
     where: {
+      brand_id: req.body.brand_id,
+      user_id: req.body.user_id,
       id: req.body.id
     }
   });
 
-  return res.json(user_brand);
+  return res.json(user_spending);
 }));
 
 module.exports = router;
