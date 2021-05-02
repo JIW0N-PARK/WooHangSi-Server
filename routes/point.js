@@ -25,18 +25,18 @@ router.post('/create', catchErrors(async (req, res, next)=>{
   // 총 포인트 생성 -> 총 포인트 생성이 되어 있지 않은 경우
 
   // {
-  //   point_amount: "",
+  //   total_amount: "",
   //   point_content: "", --> 적립 or 차감
   //   user_id: ""
   // }
   var total = await Total_Point.findOne({user_id: req.body.user_id});
 
-  if(total){
-    total = await Total_Point.create({
-      point_amount: req.body.point_amount,
+  if(!total){
+    var new_total = await Total_Point.create({
+      total_amount: req.body.total_amount,
       user_id: req.body.user_id
     });
-    return res.json(total);
+    return res.json(new_total);
   }
   else{
     return res.send('Already Exists. So Need Update');
@@ -51,8 +51,10 @@ router.put('/update', catchErrors(async (req, res, next) => {
   //   point_content: "", --> 적립 or 차감
   //   user_id: ""
   // }
+  var total = await Total_Point.findOne({user_id: req.body.user_id});
+
   if(req.body.point_content = '적립'){
-    var point_plus = total.total_amount + req.body.total_point;
+    var point_plus = total.total_amount + req.body.point_amount;
     var total_plus = await Total_Point.update({
       total_amount: point_plus
     }, {
@@ -63,7 +65,7 @@ router.put('/update', catchErrors(async (req, res, next) => {
     return res.json(total_plus);
   } 
   else{
-    var point_minus = total.total_amount - req.body.total_point;
+    var point_minus = total.total_amount - req.body.point_amount;
     var total_minus = await Total_Point.update({
       total_amount: point_minus
     }, {

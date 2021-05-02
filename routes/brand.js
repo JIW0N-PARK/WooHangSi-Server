@@ -101,15 +101,23 @@ router.delete('/budget/delete', catchErrors(async (req, res, next) => {
 }));
 
 
-router.post('/spending/add', catchErrors(async (req, res, next) => {
+router.put('/spending/update', catchErrors(async (req, res, next) => {
   // 브랜드 지출 추가
 
   // {
   //   id: ""
   //   spending: ""
   // }
+  var user_brand = await User_Brand.findAll({
+    where: {
+      id: req.body.id
+    }
+  });
+
+  var spending_update = user_brand.spending + req.body.spending;
+
   var user_spending = await User_Brand.update({
-    spending: req.body.spending
+    spending: spending_update
   }, {
     where: {
       id: req.body.id

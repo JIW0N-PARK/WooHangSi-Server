@@ -74,23 +74,30 @@ router.delete('/budget/delete', catchErrors(async (req, res, next) => {
 }));
 
 
-router.post('/spending/add', catchErrors(async (req, res, next) => {
+router.put('/spending/update', catchErrors(async (req, res, next) => {
   // 카테고리 지출 추가
 
   // {
   //   id: "",
   //   spending: ""
   // }
+  var user_category = await User_Category.findAll({
+    where: {
+      id: req.body.id
+    }
+  });
+
+  var spending_update = user_category.spending + req.body.spending;
 
   var user_spending = await User_Category.update({
-    spending: req.body.spending
+    spending: spending_update
   }, {
     where: {
       id: req.body.id
     }
   });
 
-  return res.json(user_spending);
+  return res.send(user_spending);
 }));
 
 module.exports = router;
