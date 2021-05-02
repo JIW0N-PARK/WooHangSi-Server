@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Point = require('../models/point');
+var Point_list = require('../models/point_list');
 var Total_Point = require('../models/total_point');
 const catchErrors = require('../lib/async-error');
 
@@ -12,7 +12,7 @@ router.post('/manage', catchErrors(async (req, res, next)=>{
   //   point_content: "", --> 적립 or 차감
   //   user_id: ""
   // }
-  var point = await Point.create({
+  var point_list = await Point_list.create({
     point_amount: req.body.point_amount,
     point_content: req.body.point_content,
     user_id: req.body.user_id
@@ -78,7 +78,7 @@ router.post('/list', catchErrors(async (req, res, next) => {
   // {
   //   user_id: ""
   // }
-  var point_list = await Point.findAll({
+  var point_list = await Point_list.findAll({
     user_id: req.body.user_id
   });
 
